@@ -50,7 +50,7 @@ public class Main {
                 }
             }
         }
-        System.out.println(jlWord[0] + jlWord[1] + jlWord[2]);
+        System.out.println(jlWord[0] + jlWord[1] + jlWord[3]);
 
         /*for (int i = 0; i < word.length(); i++) {
             letter = word.charAt(i);
