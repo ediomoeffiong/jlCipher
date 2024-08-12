@@ -26,6 +26,9 @@ public class Main {
             translateTwo();
         }*/
 
+
+        //Working for three lettered words
+        //In case of 'boy', 'cat', and others where a vowel is at the middle
         for (int j = 0; j < word.length(); j++) {
             if (word.charAt(j+1) == 'a') {
                 jlWord[j] = String.valueOf(word.charAt(j));
