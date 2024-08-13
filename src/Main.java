@@ -11,6 +11,7 @@ public class Main {
     public static void main(String[] args) {
 
 
+        // Collects the word
         System.out.print("\nInput a word: ");
         Scanner translateWord = new Scanner(System.in);
         word = translateWord.nextLine();
@@ -20,9 +21,11 @@ public class Main {
 
         String tWord = "";
 
-        //Translates from Jungle Langauge to English
+        //Translates from Jungle Language to English
         for (j = 0; j < word.length(); j++) {
             if (j == 0) {
+                //Ciphers vowel letters if they appear in the first index
+                //Solves problems of them being exempted when printed out to the screen
                 switch (word.charAt(j)) {
                     case '1' -> {
                         jlWord[j] = "a";
@@ -50,11 +53,13 @@ public class Main {
                     }
                 }
             }
+            //Ciphers consonant letters
             if ((j+1) < (word.length())) {
                 if (word.charAt(j+1) == 'a') {
                     jlWord[j] = String.valueOf(word.charAt(j));
                     buffer = buffer.concat(jlWord[j]);
                 } else {
+                    // Ciphers vowel letters
                     switch (word.charAt(j+1)) {
                         case '1' -> {
                             jlWord[j+1] = "a";
@@ -84,11 +89,14 @@ public class Main {
                 }
             }
         }
+
+        //Enables
         jl = !buffer.isEmpty();
 
         rWord = buffer;
 
         if (jl) {
+            System.out.println("Language Detected: Jungle Language");
             System.out.println(word + " | " + rWord);
             tryAgain();
         } else {
@@ -99,12 +107,15 @@ public class Main {
                 tWord = tWord.concat(rWord);
             }
 
+            System.out.println("Language Detected: English Language");
             System.out.println(word + " | " + tWord);
 
             tryAgain();
         }
     }
 
+
+    // Translates from English to Jungle language
     public static void translate(char letter) {
         switch (letter) {
             case ' ' -> {
@@ -138,6 +149,7 @@ public class Main {
     }
 
 
+    // Runs the program again depending on the user input
     public static void tryAgain() {
         System.out.print("\nDo you want to translate again (Y/N): ");
         Scanner scanOpp = new Scanner(System.in);
