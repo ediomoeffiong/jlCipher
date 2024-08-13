@@ -28,9 +28,30 @@ public class Main {
 
 
         //Working for three lettered words
-        //In case of 'boy', 'cat', and others where a vowel is at the middle
+        //In case of 'boy'(ba4ya), 'cat' (ca1ta), and others where a vowel is at the middle
         for (int j = 0; j < word.length(); j++) {
-            if (word.charAt(j+1) == 'a') {
+            //This statement works for three lettered words
+            //In case of 'bee' (ba22), 'sea' (sa21), and others where a vowel sound is at the middle and end
+            if ((j+1) >= (word.length()) && (word.charAt(j) == '1' || word.charAt(j) == '2' || word.charAt(j) == '3' || word.charAt(j) == '4' || word.charAt(j) == '5')) {
+                switch (word.charAt(j)) {
+                    case '1' -> {
+                        jlWord[j] = "a";
+                    }
+                    case '2' -> {
+                        jlWord[j] = "e";
+                    }
+                    case '3' -> {
+                        jlWord[j] = "i";
+                    }
+                    case '4' -> {
+                        jlWord[j] = "o";
+                    }
+                    case '5' -> {
+                        jlWord[j] = "u";
+                    }
+                }
+                break;
+            } else if (word.charAt(j+1) == 'a') {
                 jlWord[j] = String.valueOf(word.charAt(j));
                 j++;
             } else if (word.charAt(j) == '1' || word.charAt(j) == '2' || word.charAt(j) == '3' || word.charAt(j) == '4' || word.charAt(j) == '5') {
