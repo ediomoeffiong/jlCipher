@@ -39,10 +39,10 @@ public class Main {
                         jlWord[j-1] = "a";
                     }
                     case '2' -> {
-                        jlWord[j-1] = "b";
+                        jlWord[j-1] = "e";
                     }
                     case '3' -> {
-                        jlWord[j-1] = "e";
+                        jlWord[j-1] = "i";
                     }
                     case '4' -> {
                         jlWord[j-1] = "o";
