@@ -4,7 +4,7 @@ public class Main {
     public static String word, rWord;
     public static String buffer;
     public static char letter;
-    public static String[] jlWord = new String[50];
+    public static String[] jlWord = new String[1000];
     public static int j;
     public static boolean jl, noPresent, noPresentFirst;
 
@@ -12,6 +12,12 @@ public class Main {
 
         buffer = "";
         rWord = "";
+        word = "";
+        jlWord = new String[1000];
+        j = 0;
+        jl = false;
+        noPresentFirst = false;
+        noPresent = false;
 
         // Collects the word
         System.out.print("\nInput a word: ");
@@ -26,6 +32,24 @@ public class Main {
 
         //Translates from Jungle Language to English
         for (j = 0; j < word.length(); j++) {
+            if (word.charAt(j) == '\'' || word.charAt(j) == '\"' || word.charAt(j) == '.' || word.charAt(j) == ',' || word.charAt(j) == '~' || word.charAt(j) == '`' || word.charAt(j) == '!' || word.charAt(j) == '@' || word.charAt(j) == '#') {
+                jlWord[j] = String.valueOf(word.charAt(j));
+                buffer = buffer.concat(jlWord[j]);
+                continue;
+            } else if (word.charAt(j) == '$' || word.charAt(j) == '%' || word.charAt(j) == '^' || word.charAt(j) == '&' || word.charAt(j) == '*' || word.charAt(j) == '(' || word.charAt(j) == ')') {
+                jlWord[j] = String.valueOf(word.charAt(j));
+                buffer = buffer.concat(jlWord[j]);
+                continue;
+            } else if (word.charAt(j) == '-' || word.charAt(j) == '_' || word.charAt(j) == '+' || word.charAt(j) == '=' || word.charAt(j) == '{' || word.charAt(j) == '}' || word.charAt(j) == '[') {
+                jlWord[j] = String.valueOf(word.charAt(j));
+                buffer = buffer.concat(jlWord[j]);
+                continue;
+            } else if (word.charAt(j) == ']' || word.charAt(j) == '|' || word.charAt(j) == '\\' || word.charAt(j) == ':' || word.charAt(j) == ';' || word.charAt(j) == '?' || word.charAt(j) == '/') {
+                jlWord[j] = String.valueOf(word.charAt(j));
+                buffer = buffer.concat(jlWord[j]);
+                continue;
+            }
+
             if (j == 0) {
                 //Ciphers vowel letters if they appear in the first index
                 //Solves problems of them being exempted when printed out to the screen
@@ -158,6 +182,15 @@ public class Main {
             default -> {
                 rWord = letter + "a";
             }
+        }
+        if (letter == '\'' || letter == '\"' || letter == '.' || letter == ',' || letter == '~' || letter == '`' || letter == '!' || letter == '@' || letter == '#') {
+            rWord = String.valueOf(letter);
+        } else if (letter == '$' || letter == '%' || letter == '^' || letter == '&' || letter == '*' || letter == '(' || letter == ')') {
+            rWord = String.valueOf(letter);
+        } else if (letter == '-' || letter == '_' || letter == '+' || letter == '=' || letter == '{' || letter == '}' || letter == '[') {
+            rWord = String.valueOf(letter);
+        } else if (letter == ']' || letter == '|' || letter == '\\' || letter == ':' || letter == ';' || letter == '?' || letter == '/') {
+            rWord = String.valueOf(letter);
         }
 
     }
