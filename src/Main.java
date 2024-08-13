@@ -2,19 +2,22 @@ import java.util.Scanner;
 
 public class Main {
     public static String word, rWord;
-    public static String buffer = "";
+    public static String buffer;
     public static char letter;
     public static String[] jlWord = new String[50];
     public static int j;
-    public static boolean jl;
+    public static boolean jl, noPresent, noPresentFirst;
 
     public static void main(String[] args) {
 
+        buffer = "";
+        rWord = "";
 
         // Collects the word
         System.out.print("\nInput a word: ");
         Scanner translateWord = new Scanner(System.in);
         word = translateWord.nextLine();
+        System.out.print("\n");
 
         word = word.toLowerCase();
 
@@ -26,26 +29,32 @@ public class Main {
             if (j == 0) {
                 //Ciphers vowel letters if they appear in the first index
                 //Solves problems of them being exempted when printed out to the screen
+                noPresentFirst = true;
                 switch (word.charAt(j)) {
                     case '1' -> {
                         jlWord[j] = "a";
                         buffer = buffer.concat(jlWord[j]);
+                        noPresent = true;
                     }
                     case '2' -> {
                         jlWord[j] = "e";
                         buffer = buffer.concat(jlWord[j]);
+                        noPresent = true;
                     }
                     case '3' -> {
                         jlWord[j] = "i";
                         buffer = buffer.concat(jlWord[j]);
+                        noPresent = true;
                     }
                     case '4' -> {
                         jlWord[j] = "o";
                         buffer = buffer.concat(jlWord[j]);
+                        noPresent = true;
                     }
                     case '5' -> {
                         jlWord[j] = "u";
                         buffer = buffer.concat(jlWord[j]);
+                        noPresent = true;
                     }
                     case ' ' -> {
                         jlWord[j] = " ";
@@ -64,22 +73,27 @@ public class Main {
                         case '1' -> {
                             jlWord[j+1] = "a";
                             buffer = buffer.concat(jlWord[j+1]);
+                            noPresent = true;
                         }
                         case '2' -> {
                             jlWord[j+1] = "e";
                             buffer = buffer.concat(jlWord[j+1]);
+                            noPresent = true;
                         }
                         case '3' -> {
                             jlWord[j+1] = "i";
                             buffer = buffer.concat(jlWord[j+1]);
+                            noPresent = true;
                         }
                         case '4' -> {
                             jlWord[j+1] = "o";
                             buffer = buffer.concat(jlWord[j+1]);
+                            noPresent = true;
                         }
                         case '5' -> {
                             jlWord[j+1] = "u";
                             buffer = buffer.concat(jlWord[j+1]);
+                            noPresent = true;
                         }
                         case ' ' -> {
                             jlWord[j+1] = " ";
@@ -91,7 +105,7 @@ public class Main {
         }
 
         //Enables
-        jl = !buffer.isEmpty();
+        jl = !buffer.isEmpty() && noPresent && noPresentFirst;
 
         rWord = buffer;
 
