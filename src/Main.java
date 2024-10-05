@@ -20,7 +20,7 @@ public class Main {
         noPresent = false;
 
         // Collects the word
-        System.out.print("\nInput a word or sentence: ");
+        System.out.print("\nInput a word: ");
         Scanner translateWord = new Scanner(System.in);
         word = translateWord.nextLine();
         System.out.print("\n");
