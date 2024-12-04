@@ -51,7 +51,7 @@ public class Main {
             }
 
             if (j == 0) {
-                //Ciphers vowel letters if they appear in the first index
+                //Resolves vowel letters if they appear in the first index
                 //Solves problems of them being exempted when printed out to the screen
                 noPresentFirst = true;
                 switch (word.charAt(j)) {
