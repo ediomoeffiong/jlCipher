@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // Defining Variables
         buffer = "";
         rWord = "";
         word = "";
@@ -28,6 +29,7 @@ public class Main {
         word = word.toLowerCase();
 
 
+        // Buffer
         String tWord = "";
 
         //Translates from Jungle Language to English
