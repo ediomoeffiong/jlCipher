@@ -130,7 +130,7 @@ public class Main {
             }
         }
 
-        //Enables
+        //Enables langauge detection for smooth translation
         jl = !buffer.isEmpty() && noPresent && noPresentFirst;
 
         rWord = buffer;
