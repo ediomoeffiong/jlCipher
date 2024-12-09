@@ -198,7 +198,7 @@ public class Main {
     }
 
 
-    // Runs the program again depending on the user input
+    // Runs the program again depending on the user choice
     public static void tryAgain() {
         System.out.print("\nDo you want to translate again (Y/N): ");
         Scanner scanOpp = new Scanner(System.in);
