@@ -88,13 +88,13 @@ public class Main {
                     }
                 }
             }
-            //Ciphers consonant letters
+            // Deciphers consonant letters
             if ((j+1) < (word.length())) {
                 if (word.charAt(j+1) == 'a') {
                     jlWord[j] = String.valueOf(word.charAt(j));
                     buffer = buffer.concat(jlWord[j]);
                 } else {
-                    // Ciphers vowel letters
+                    // Deciphers vowel letters
                     switch (word.charAt(j+1)) {
                         case '1' -> {
                             jlWord[j+1] = "a";
