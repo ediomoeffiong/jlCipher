@@ -130,7 +130,7 @@ public class Main {
             }
         }
 
-        //Enables langauge detection for smooth and accurate translation
+        //Enables langauge detection for accurate translation
         jl = !buffer.isEmpty() && noPresent && noPresentFirst;
 
         rWord = buffer;
