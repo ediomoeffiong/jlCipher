@@ -26,7 +26,7 @@ public class Main {
         word = translateWord.nextLine();
         System.out.print("\n");
 
-        word = word.toLowerCase();
+        //word = word.toLowerCase();
 
 
         // Buffer
@@ -90,6 +90,7 @@ public class Main {
                     }
                 }
             }
+
             // Deciphers consonant letters
             if ((j+1) < (word.length())) {
                 if (word.charAt(j+1) == 'a') {
@@ -150,7 +151,7 @@ public class Main {
             }
 
             System.out.println("Language Detected: English Language");
-            System.out.println(word + " | " + tWord);
+            System.out.println(tWord);
 
             tryAgain();
         }
