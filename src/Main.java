@@ -7,6 +7,8 @@ public class Main {
     public static String[] jlWord = new String[1000];
     public static int j;
     public static boolean jl, noPresent, noPresentFirst;
+    // Buffer
+    public static String tWord = "";
 
     public static void main(String[] args) {
 
@@ -28,9 +30,8 @@ public class Main {
 
         //word = word.toLowerCase();
 
+        //Breaks down the sentence to words then passes it to the translate method
 
-        // Buffer
-        String tWord = "";
 
         //Translates from Jungle Language to English
         for (j = 0; j < word.length(); j++) {
@@ -133,11 +134,19 @@ public class Main {
             }
         }
 
+        // Removed language detection
         //Enables langauge detection for accurate translation
         jl = !buffer.isEmpty() && noPresent && noPresentFirst;
 
         rWord = buffer;
+        checkLang();
+        tryAgain();
+        translateWord.close();
+    }
 
+
+    // Checks language
+    public static void checkLang() {
         if (jl) {
             System.out.println("Language Detected: Jungle Language");
             System.out.println(word + " | " + rWord);
@@ -149,12 +158,10 @@ public class Main {
                 translate(letter);
                 tWord = tWord.concat(rWord);
             }
-
-            System.out.println("Language Detected: English Language");
-            System.out.println(tWord);
-
-            tryAgain();
         }
+
+        System.out.println("Language Detected: English Language");
+        System.out.println(tWord);
     }
 
 
@@ -208,6 +215,7 @@ public class Main {
                 rWord = letter + "a";
             }
         }
+
         if (letter == '\'' || letter == '\"' || letter == '.' || letter == ',' || letter == '~' || letter == '`' || letter == '!' || letter == '@' || letter == '#') {
             rWord = String.valueOf(letter);
         } else if (letter == '$' || letter == '%' || letter == '^' || letter == '&' || letter == '*' || letter == '(' || letter == ')') {
