@@ -55,6 +55,8 @@ public class Main {
             if (j == 0) {
                 //Resolves vowel letters if they appear in the first index
                 //Solves problems of them being exempted when printed out to the screen
+                //Remembebr to fix the casew assuming this if found at the beginning of
+                //a sentence or after a period mark.
                 noPresentFirst = true;
                 switch (word.charAt(j)) {
                     case '1' -> {
@@ -178,6 +180,26 @@ public class Main {
                 rWord = String.valueOf(letter);
             }
             case 'a' -> {
+                letter = '1';
+                rWord = String.valueOf(letter);
+            }
+            case 'U' -> {
+                letter = '5';
+                rWord = String.valueOf(letter);
+            }
+            case 'O' -> {
+                letter = '4';
+                rWord = String.valueOf(letter);
+            }
+            case 'I' -> {
+                letter = '3';
+                rWord = String.valueOf(letter);
+            }
+            case 'E' -> {
+                letter = '2';
+                rWord = String.valueOf(letter);
+            }
+            case 'A' -> {
                 letter = '1';
                 rWord = String.valueOf(letter);
             }
