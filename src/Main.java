@@ -1,13 +1,11 @@
 import java.util.Scanner;
 
 public class Main {
-    public static String word, rWord;
-    public static String buffer;
+    public static String word, rWord, buffer;
     public static char letter;
-    public static String[] jlWord = new String[1000];
+    public static char[] jlWord = new char[1000];
     public static int j;
-    public static boolean jl, noPresent, noPresentFirst;
-    // Buffer
+    public static boolean jl, jlConfirmation1, jlConfirmation2;
     public static String tWord = "";
 
     public static void main(String[] args) {
@@ -16,11 +14,11 @@ public class Main {
         buffer = "";
         rWord = "";
         word = "";
-        jlWord = new String[1000];
+        jlWord = new char[1000];
         j = 0;
         jl = false;
-        noPresentFirst = false;
-        noPresent = false;
+        jlConfirmation1 = false;
+        jlConfirmation2 = false;
 
         // Collects the word
         System.out.print("\nInput a word: ");
@@ -28,134 +26,43 @@ public class Main {
         word = translateWord.nextLine();
         System.out.print("\n");
 
-        //word = word.toLowerCase();
+        word = word.toLowerCase();
 
-        //Breaks down the sentence to words then passes it to the translate method
+        //Breaks down the sentence to words then passes it to the translation method
 
+        checkLang(word);
 
-        //Translates from Jungle Language to English
-        for (j = 0; j < word.length(); j++) {
-            if (word.charAt(j) == '\'' || word.charAt(j) == '\"' || word.charAt(j) == '.' || word.charAt(j) == ',' || word.charAt(j) == '~' || word.charAt(j) == '`' || word.charAt(j) == '!' || word.charAt(j) == '@' || word.charAt(j) == '#') {
-                jlWord[j] = String.valueOf(word.charAt(j));
-                buffer = buffer.concat(jlWord[j]);
-                continue;
-            } else if (word.charAt(j) == '$' || word.charAt(j) == '%' || word.charAt(j) == '^' || word.charAt(j) == '&' || word.charAt(j) == '*' || word.charAt(j) == '(' || word.charAt(j) == ')') {
-                jlWord[j] = String.valueOf(word.charAt(j));
-                buffer = buffer.concat(jlWord[j]);
-                continue;
-            } else if (word.charAt(j) == '-' || word.charAt(j) == '_' || word.charAt(j) == '+' || word.charAt(j) == '=' || word.charAt(j) == '{' || word.charAt(j) == '}' || word.charAt(j) == '[') {
-                jlWord[j] = String.valueOf(word.charAt(j));
-                buffer = buffer.concat(jlWord[j]);
-                continue;
-            } else if (word.charAt(j) == ']' || word.charAt(j) == '|' || word.charAt(j) == '\\' || word.charAt(j) == ':' || word.charAt(j) == ';' || word.charAt(j) == '?' || word.charAt(j) == '/') {
-                jlWord[j] = String.valueOf(word.charAt(j));
-                buffer = buffer.concat(jlWord[j]);
-                continue;
-            }
+        //Removed language detection
+        //Enables language detection for accurate translation
 
-            if (j == 0) {
-                //Resolves vowel letters if they appear in the first index
-                //Solves problems of them being exempted when printed out to the screen
-                //Remembebr to fix the casew assuming this if found at the beginning of
-                //a sentence or after a period mark.
-                noPresentFirst = true;
-                switch (word.charAt(j)) {
-                    case '1' -> {
-                        jlWord[j] = "a";
-                        buffer = buffer.concat(jlWord[j]);
-                        noPresent = true;
-                    }
-                    case '2' -> {
-                        jlWord[j] = "e";
-                        buffer = buffer.concat(jlWord[j]);
-                        noPresent = true;
-                    }
-                    case '3' -> {
-                        jlWord[j] = "i";
-                        buffer = buffer.concat(jlWord[j]);
-                        noPresent = true;
-                    }
-                    case '4' -> {
-                        jlWord[j] = "o";
-                        buffer = buffer.concat(jlWord[j]);
-                        noPresent = true;
-                    }
-                    case '5' -> {
-                        jlWord[j] = "u";
-                        buffer = buffer.concat(jlWord[j]);
-                        noPresent = true;
-                    }
-                    case ' ' -> {
-                        jlWord[j] = " ";
-                        buffer = buffer.concat(jlWord[j]);
-                    }
-                }
-            }
-
-            // Deciphers consonant letters
-            if ((j+1) < (word.length())) {
-                if (word.charAt(j+1) == 'a') {
-                    jlWord[j] = String.valueOf(word.charAt(j));
-                    buffer = buffer.concat(jlWord[j]);
-                } else {
-                    // Deciphers vowel letters
-                    switch (word.charAt(j+1)) {
-                        case '1' -> {
-                            jlWord[j+1] = "a";
-                            buffer = buffer.concat(jlWord[j+1]);
-                            noPresent = true;
-                        }
-                        case '2' -> {
-                            jlWord[j+1] = "e";
-                            buffer = buffer.concat(jlWord[j+1]);
-                            noPresent = true;
-                        }
-                        case '3' -> {
-                            jlWord[j+1] = "i";
-                            buffer = buffer.concat(jlWord[j+1]);
-                            noPresent = true;
-                        }
-                        case '4' -> {
-                            jlWord[j+1] = "o";
-                            buffer = buffer.concat(jlWord[j+1]);
-                            noPresent = true;
-                        }
-                        case '5' -> {
-                            jlWord[j+1] = "u";
-                            buffer = buffer.concat(jlWord[j+1]);
-                            noPresent = true;
-                        }
-                        case ' ' -> {
-                            jlWord[j+1] = " ";
-                            buffer = buffer.concat(jlWord[j+1]);
-                        }
-                    }
-                }
-            }
-        }
-
-        // Removed language detection
-        //Enables langauge detection for accurate translation
-        jl = !buffer.isEmpty() && noPresent && noPresentFirst;
-
-        rWord = buffer;
-        checkLang();
         tryAgain();
         translateWord.close();
     }
 
 
-    // Checks language
-    public static void checkLang() {
+    // Checks language if it is English or Jungle Language
+    public static void checkLang(String word) {
+        for (j = 0; j < word.length(); j++) {
+            if (word.charAt(j) == 'a') {
+                jlConfirmation1 = true;
+            } if (word.charAt(j) == '1' || word.charAt(j) == '2' || word.charAt(j) == '3' || word.charAt(j) == '4' || word.charAt(j) == '5') {
+                jlConfirmation2 = true;
+            }
+        }
+        if (jlConfirmation1 && jlConfirmation2) {
+            jl = true;
+        }
+
         if (jl) {
+            translateJL(word);
             System.out.println("Language Detected: Jungle Language");
-            System.out.println(word + " | " + rWord);
+            System.out.println(word + " | " + buffer);
             tryAgain();
         } else {
             tWord = "";
             for (int i = 0; i < word.length(); i++) {
                 letter = word.charAt(i);
-                translate(letter);
+                translateENG(letter);
                 tWord = tWord.concat(rWord);
             }
         }
@@ -166,56 +73,37 @@ public class Main {
 
 
     // Translates from English to Jungle language
-    public static void translate(char letter) {
+    public static void translateENG(char letter) {
         switch (letter) {
-            case ' ' -> {
+            case ' ':
                 rWord = " ";
-            }
-            case 'u' -> {
+                break;
+            case 'u':
                 letter = '5';
                 rWord = String.valueOf(letter);
-            }
-            case 'o' -> {
+                break;
+            case 'o':
                 letter = '4';
                 rWord = String.valueOf(letter);
-            }
-            case 'i' -> {
+                break;
+            case 'i':
                 letter = '3';
                 rWord = String.valueOf(letter);
-            }
-            case 'e' -> {
+                break;
+            case 'e':
                 letter = '2';
                 rWord = String.valueOf(letter);
-            }
-            case 'a' -> {
+                break;
+            case 'a':
                 letter = '1';
                 rWord = String.valueOf(letter);
-            }
-            case 'U' -> {
-                letter = '5';
-                rWord = String.valueOf(letter);
-            }
-            case 'O' -> {
-                letter = '4';
-                rWord = String.valueOf(letter);
-            }
-            case 'I' -> {
-                letter = '3';
-                rWord = String.valueOf(letter);
-            }
-            case 'E' -> {
-                letter = '2';
-                rWord = String.valueOf(letter);
-            }
-            case 'A' -> {
-                letter = '1';
-                rWord = String.valueOf(letter);
-            }
-            default -> {
+                break;
+            default:
                 rWord = letter + "a";
-            }
+                break;
         }
 
+        //Resolves for character
         if (letter == '\'' || letter == '\"' || letter == '.' || letter == ',' || letter == '~' || letter == '`' || letter == '!' || letter == '@' || letter == '#') {
             rWord = String.valueOf(letter);
         } else if (letter == '$' || letter == '%' || letter == '^' || letter == '&' || letter == '*' || letter == '(' || letter == ')') {
@@ -226,6 +114,101 @@ public class Main {
             rWord = String.valueOf(letter);
         }
 
+    }
+
+    // Translates from Jungle language to English Language
+    public static void translateJL(String word) {
+        for (j = 0; j < word.length(); j++) {
+            //Resolves characters
+            if (word.charAt(j) == '\'' || word.charAt(j) == '\"' || word.charAt(j) == '.' || word.charAt(j) == ',' || word.charAt(j) == '~' || word.charAt(j) == '`' || word.charAt(j) == '!' || word.charAt(j) == '@' || word.charAt(j) == '#') {
+                jlWord[j] = word.charAt(j);
+                buffer = buffer.concat(String.valueOf(jlWord[j]));
+                continue;
+            } else if (word.charAt(j) == '$' || word.charAt(j) == '%' || word.charAt(j) == '^' || word.charAt(j) == '&' || word.charAt(j) == '*' || word.charAt(j) == '(' || word.charAt(j) == ')') {
+                jlWord[j] = word.charAt(j);
+                buffer = buffer.concat(String.valueOf(jlWord[j]));
+                continue;
+            } else if (word.charAt(j) == '-' || word.charAt(j) == '_' || word.charAt(j) == '+' || word.charAt(j) == '=' || word.charAt(j) == '{' || word.charAt(j) == '}' || word.charAt(j) == '[') {
+                jlWord[j] = word.charAt(j);
+                buffer = buffer.concat(String.valueOf(jlWord[j]));
+                continue;
+            } else if (word.charAt(j) == ']' || word.charAt(j) == '|' || word.charAt(j) == '\\' || word.charAt(j) == ':' || word.charAt(j) == ';' || word.charAt(j) == '?' || word.charAt(j) == '/') {
+                jlWord[j] = word.charAt(j);
+                buffer = buffer.concat(String.valueOf(jlWord[j]));
+                continue;
+            }
+
+            /*  Resolves vowel letters
+                If they appear in the first index
+                Solves problems of them being exempted when printed out to the screen
+                Remember to fix the case assuming this is found at the beginning of
+                a sentence or after a period mark.
+            */
+            if (j == 0) {
+                switch (word.charAt(j)) {
+                    case '1':
+                        jlWord[j] = 'a';
+                        buffer = buffer.concat(String.valueOf(jlWord[j]));
+                        break;
+                    case '2':
+                        jlWord[j] = 'e';
+                        buffer = buffer.concat(String.valueOf(jlWord[j]));
+                        break;
+                    case '3':
+                        jlWord[j] = 'i';
+                        buffer = buffer.concat(String.valueOf(jlWord[j]));
+                        break;
+                    case '4':
+                        jlWord[j] = 'o';
+                        buffer = buffer.concat(String.valueOf(jlWord[j]));
+                        break;
+                    case '5':
+                        jlWord[j] = 'u';
+                        buffer = buffer.concat(String.valueOf(jlWord[j]));
+                        break;
+                    case ' ':
+                        jlWord[j] = ' ';
+                        buffer = buffer.concat(String.valueOf(jlWord[j]));
+                        break;
+                }
+            }
+
+            // Deciphers consonant letters
+            if ((j+1) < (word.length())) {
+                if (word.charAt(j+1) == 'a') {
+                    jlWord[j] = word.charAt(j);
+                    buffer = buffer.concat(String.valueOf(jlWord[j]));
+                } else {
+                    // Deciphers vowel letters
+                    switch (word.charAt(j+1)) {
+                        case '1':
+                            jlWord[j] = '1';
+                            buffer = buffer.concat("a");
+                            break;
+                        case '2':
+                            jlWord[j] = '2';
+                            buffer = buffer.concat("e");
+                            break;
+                        case '3':
+                            jlWord[j] = '3';
+                            buffer = buffer.concat("i");
+                            break;
+                        case '4':
+                            jlWord[j] = '4';
+                            buffer = buffer.concat("o");
+                            break;
+                        case '5':
+                            jlWord[j] = '5';
+                            buffer = buffer.concat("u");
+                            break;
+                        case ' ':
+                            jlWord[j] = ' ';
+                            buffer = buffer.concat(String.valueOf(jlWord[j]));
+                            break;
+                    }
+                }
+            }
+        }
     }
 
 
